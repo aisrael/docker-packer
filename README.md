@@ -29,3 +29,9 @@ Instructions
 
     brew install docker
 
+#### Run
+
+    export DOCKER_HOST="localhost"
+    docker version
+
+
