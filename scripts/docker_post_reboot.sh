@@ -17,5 +17,5 @@ apt-get update
 apt-get install -y lxc-docker
 
 # Have docker listening to a particular port
-sed -i 's/DOCKER_OPTS=$/DOCKER_OPTS="-H 127.0.0.1:4243"/' /etc/init.d/docker
-sed -i 's/DOCKER_OPTS=$/DOCKER_OPTS="-H 127.0.0.1:4243"/' /etc/init/docker.conf
+sed -i 's/DOCKER_OPTS=$/DOCKER_OPTS="-H tcp:\/\/"/' /etc/init.d/docker
+sed -i 's/DOCKER_OPTS=$/DOCKER_OPTS="-H tcp:\/\/"/' /etc/init/docker.conf
