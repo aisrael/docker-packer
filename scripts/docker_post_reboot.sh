@@ -9,10 +9,13 @@ mkdir -p /etc/apt/sources.list.d
 
 # Add the Docker repository to your apt sources list.
 sh -c "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
-[ ! -f /etc/apt/sources.list.d/docker.list ] && exit 100
 
 # Update your sources
 apt-get update
 
 # Install. Confirm install.
 apt-get install -y lxc-docker
+
+# Have docker listening to a particular port
+sed -i 's/DOCKER_OPTS=$/DOCKER_OPTS="-H 127.0.0.1:4243"/' /etc/init.d/docker
+sed -i 's/DOCKER_OPTS=$/DOCKER_OPTS="-H 127.0.0.1:4243"/' /etc/init/docker.conf
