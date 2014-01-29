@@ -4,8 +4,8 @@
             "type": "shell",
             "scripts": [
                 "scripts/vagrant.sh",
+                "scripts/pre_docker.sh",
                 "scripts/docker.sh",
-                "scripts/docker_post_reboot.sh",
                 "scripts/virtualbox.sh",
                 "scripts/cleanup.sh",
                 "scripts/zerodisk.sh"
