@@ -10,16 +10,25 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = 'ubuntu-12.04-server-amd64-vbox-4.3.6-docker'
+  config.vm.box = 'ubuntu-12.04.04-server-amd64-vbox-4.3.10-docker-0.9.1'
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = './ubuntu-12.04-server-amd64-vbox-4.3.6-docker.box'
+  config.vm.box_url = 'ubuntu-12.04.04-server-amd64-vbox-4.3.10-docker-0.9.1.box'
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network :forwarded_port, guest: 4243, host: 4243
+
+  {
+    docker: 4243,
+    apt_cacher_ng: 3142,
+    mysql: 3306,
+    redis: 6379,
+    memcached: 11211
+  }.values.each do |port|
+    config.vm.network :forwarded_port, guest: port, host: port
+  end
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
