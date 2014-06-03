@@ -31,7 +31,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.network :forwarded_port, guest: port, host: port
   end
 
-  config.vm.synced_folder '.', '/vagrant', owner: 'apt-cacher-ng', group: 'apt-cacher-ng',
-      mount_options: ['dmode=755,fmode=755']
-
+  # config.vm.synced_folder '.', '/vagrant',
+  #     owner: 'apt-cacher-ng',
+  #     group: 'apt-cacher-ng',
+  #     mount_options: ['dmode=755,fmode=755']
 end
