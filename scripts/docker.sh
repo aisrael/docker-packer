@@ -19,7 +19,6 @@ apt-get install -y lxc-docker
 apt-get install -y inotify-tools
 
 # Have docker listening to a particular port
-sed -i 's/DOCKER_OPTS=$/DOCKER_OPTS="-H tcp:\/\/0.0.0.0:4243"/' /etc/init.d/docker
-sed -i 's/DOCKER_OPTS=$/DOCKER_OPTS="-H tcp:\/\/0.0.0.0:4243"/' /etc/init/docker.conf
+sed -i '/^#DOCKER_OPTS/a DOCKER_OPTS="-H tcp://0.0.0.0:4243"' /etc/default/docker
 
 echo "export DOCKER_HOST=localhost:4243" >> ~/.bashrc
