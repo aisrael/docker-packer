@@ -62,7 +62,7 @@
     "post-processors": [
         {
             "type": "vagrant",
-            "output": "ubuntu-14.04-server-amd64-vbox-4.3.12-docker-0.11.1.box"
+            "output": "ubuntu-14.04-server-amd64-vbox-4.3.12-docker-1.0.0.box"
         }
     ]
 }
