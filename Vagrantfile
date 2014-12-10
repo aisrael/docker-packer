@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
-  BOX_NAME = 'ubuntu-14.04-server-amd64-vbox-4.3.12-docker-0.11.1'
+  BOX_NAME = 'ubuntu-14.04-server-amd64-vbox-4.3.20-docker-1.3.2'
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = BOX_NAME
@@ -34,6 +34,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     memcached: 11211
   }.values.each do |port|
     config.vm.network :forwarded_port, guest: port, host: port
+  end
+
+  config.vm.provision 'ansible' do |ansible|
+    ansible.playbook = 'playbook.yml'
   end
 
   # config.vm.synced_folder '.', '/vagrant',
