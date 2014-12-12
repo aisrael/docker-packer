@@ -8,3 +8,5 @@ echo "DOCKER_VERSION: ${DOCKER_VERSION}"
 
 sed -e "s/\${VIRTUALBOX_VERSION}/${VIRTUALBOX_VERSION}/g" -e "s/\${DOCKER_VERSION}/${DOCKER_VERSION}/g" < docker_packer.json.template > docker_packer.json
 sed -e "s/\${VIRTUALBOX_VERSION}/${VIRTUALBOX_VERSION}/g" -e "s/\${DOCKER_VERSION}/${DOCKER_VERSION}/g" < Vagrantfile.template > Vagrantfile
+
+packer build docker_packer.json
