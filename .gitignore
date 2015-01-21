@@ -2,3 +2,5 @@
 packer_cache
 output*
 *.box
+/docker_packer.json
+/Vagrantfile
