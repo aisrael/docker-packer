@@ -31,7 +31,7 @@ Instructions
 
 #### Run
 
-    export DOCKER_HOST="localhost"
+    export DOCKER_HOST="localhost:4243"
     docker version
 
 
