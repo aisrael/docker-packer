@@ -19,7 +19,7 @@ Instructions
 
 #### Build the box
 
-    packer build template.json
+    ./build.sh
 
 #### Launch the box
 
