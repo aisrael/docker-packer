@@ -17,6 +17,10 @@ Instructions
 
     brew install packer
 
+#### Install docker
+
+    brew install docker
+
 #### Build the box
 
     ./build.sh
@@ -24,10 +28,6 @@ Instructions
 #### Launch the box
 
     vagrant up
-
-#### Install docker
-
-    brew install docker
 
 #### Run
 
