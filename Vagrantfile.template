@@ -1,13 +1,11 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
-VAGRANTFILE_API_VERSION = '2'
-
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  # All Vagrant configuration is done here. The most common configuration
-  # options are documented and commented below. For a complete reference,
-  # please see the online documentation at vagrantup.com.
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure(2) do |config|
 
   BOX_NAME = 'ubuntu-14.04.2-server-amd64-vbox-${VIRTUALBOX_VERSION}-docker-${DOCKER_VERSION}'
 
@@ -23,9 +21,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ['modifyvm', :id, '--natdnsproxy1', 'on']
   end
 
-  # Create a forwarded port mapping which allows access to a specific port
-  # within the machine from a port on the host machine. In the example below,
-  # accessing "localhost:8080" will access port 80 on the guest machine.
+  # Create forwarded port mappings which allows access to the given ports
+  # within the VM from a port on the host machine.
   {
     docker: 4243,
     apt_cacher_ng: 3142,
