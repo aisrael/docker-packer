@@ -1,7 +1,34 @@
 ---
 - hosts: all
+
+  vars:
+    locale: en_US.UTF-8 # or en_US.utf8
+    timezone: Asia/Manila
+
+  handlers:
+  - name: update tzdata
+    command: /usr/sbin/dpkg-reconfigure --frontend noninteractive tzdata
+    become: yes
+
   tasks:
   - apt: pkg=linux-image-extra-{{ ansible_kernel }} state=present update_cache=yes cache_valid_time=3600
-    sudo: yes
+    become: yes
+
   - apt: pkg=docker state=latest
-    sudo: yes
+    become: yes
+
+  - name: set locale to {{locale}}
+    command: /usr/sbin/update-locale LANG={{locale}} LC_ALL={{locale}}
+    become: yes
+    when: ansible_env.LANG != "{{locale}}"
+
+  - name: check /etc/timezone
+    command: cat /etc/timezone
+    register: cat_etc_timezone
+    changed_when: false
+
+  - name: set /etc/timezone to $timezone
+    copy: content="{{timezone}}" dest=/etc/timezone
+    become: yes
+    notify: update tzdata
+    when: cat_etc_timezone.stdout != "{{timezone}}"
