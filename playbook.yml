@@ -14,7 +14,12 @@
   - apt: pkg=linux-image-extra-{{ ansible_kernel }} state=present update_cache=yes cache_valid_time=3600
     become: yes
 
-  - apt: pkg=docker state=latest
+  - name: Make sure NTP is installed
+    apt: pkg=ntp state=latest
+    become: yes
+
+  - name: Upgrade docker-engine
+    apt: pkg=docker-engine state=latest
     become: yes
 
   - name: set locale to {{locale}}
@@ -22,13 +27,12 @@
     become: yes
     when: ansible_env.LANG != "{{locale}}"
 
-  - name: check /etc/timezone
+  - name: Check /etc/timezone
     command: cat /etc/timezone
     register: cat_etc_timezone
     changed_when: false
 
-  - name: set /etc/timezone to $timezone
-    copy: content="{{timezone}}" dest=/etc/timezone
+  - name: Set timezone
+    command: timedatectl set-timezone {{timezone}}
     become: yes
-    notify: update tzdata
     when: cat_etc_timezone.stdout != "{{timezone}}"
